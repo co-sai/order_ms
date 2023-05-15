@@ -4,9 +4,9 @@ const { OrderModel } = require("../models");
 class OrderRepository{
     async CreateOrder(validatedInputs){
         try{
-            const { senderName, receiverName, items, paymentMethod, paymentStatus } = validatedInputs;
+            const { senderName, receiverName, items, paymentMethod, paymentStatus, paymentAmount } = validatedInputs;
             const order = new OrderModel({
-                senderName, receiverName, items, paymentMethod, paymentStatus
+                senderName, receiverName, items, paymentMethod, paymentStatus, paymentAmount
             });
             await order.save();
             return order;
@@ -23,5 +23,25 @@ class OrderRepository{
             throw err;
         }
     }
+
+    async TrackItemById(id){
+        try{
+            const data = await OrderModel.findOne({ "items._id" : id});
+            return data;
+        }catch(err){
+            throw err;
+        }
+    }
+
+
+    async DeleteOrder(id){
+        try{
+            await OrderModel.findByIdAndRemove(id);
+
+            return;
+        }catch(err){
+            throw err;
+        }
+    };
 }
 module.exports = OrderRepository;
