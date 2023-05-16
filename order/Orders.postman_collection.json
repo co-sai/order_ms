@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "31c2df08-4b62-4313-bea2-150623f50c73",
+		"name": "Orders",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22017379",
+		"_collection_link": "https://galactic-eclipse-381168.postman.co/workspace/Digital-Campus~839b74d5-0068-4165-8bf6-d0987c570fb9/collection/22017379-31c2df08-4b62-4313-bea2-150623f50c73?action=share&creator=22017379&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Create Orders",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"senderName\": \"co-sai\",\n    \"receiverName\": \"Harry Potter\",\n    \"items\" : [{\"name\" : \"co-sai\", \"quantity\" : 3, \"price\" : 1000 }, {\"name\" : \"co-sai\", \"quantity\" : 3, \"price\" : 1000 }],\n    \"paymentMethod\" : \"1\",\n    \"paymentStatus\" : \"Payment Pending\",\n    \"paymentAmount\" : 2000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{order}}/orders/add",
+					"host": [
+						"{{order}}"
+					],
+					"path": [
+						"orders",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order Detail",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"senderName\": \"second updated\",\n    \"receiverName\": \"Harry Potter\",\n    \"items\": [\n        {\n            \"_id\": \"64621df8db8a207d4aed8b69\",\n            \"name\": \"co-sai\",\n            \"quantity\": 3,\n            \"price\": 1000\n        },\n        {\n            \"_id\": \"64621df8db8a207d4aed8b6a\",\n            \"name\": \"co-sai\",\n            \"quantity\": 2,\n            \"price\": 1000\n        }\n    ],\n    \"paymentMethod\" : \"wavepay\",\n    \"paymentStatus\" : \"Payment Completed\",\n    \"paymentAmount\" : 2000,\n    \"orderStatus\" : \"Order Requested\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{order}}/orders/64621df8db8a207d4aed8b68",
+					"host": [
+						"{{order}}"
+					],
+					"path": [
+						"orders",
+						"64621df8db8a207d4aed8b68"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Track order",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{order}}/orders/track/6461f0eba99efa5f4bebf03b",
+					"host": [
+						"{{order}}"
+					],
+					"path": [
+						"orders",
+						"track",
+						"6461f0eba99efa5f4bebf03b"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
